@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="ru" data-theme="light" class="has-navbar-fixed-top">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Название{% endblock %}</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.4/css/bulma.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+
+
+<header>
+    <nav class="navbar is-fixed-top is-bordered has-shadow" role="navigation" aria-label="main navigation">
+        <div class="container">
+            <div class="navbar-brand">
+
+                <a class="navbar-item brand has-text-link" href="{% url 'index:index' %}">
+                    Предсказания для МосБиржи
+                </a>
+            </div>
+        </div>
+    </nav>
+</header>
+<section class="section has-background-primary is-fullheight">
+    <div class="container">
+        {% block body %}
+
+        {% endblock %}
+    </div>
+</section>
+</body>
+</html>

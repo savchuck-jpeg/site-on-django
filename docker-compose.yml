@@ -1,0 +1,26 @@
+services:
+  moex_model:
+    build:
+      context: ./model_api
+    ports:
+      - "5001:5000"
+
+  flask_moex_api:
+    build:
+      context: ./moex_api_support
+    ports:
+      - "5000:5000"
+    depends_on:
+      - moex_model
+
+  interface:
+    build:
+      context: ./interface
+    ports:
+      - "8000:8000"
+    depends_on:
+      - flask_moex_api
+  redis:
+    image: redis:alpine
+    ports:
+      - "6379:6379"

@@ -1,0 +1,82 @@
+{% extends 'index/base.html' %}
+{% block title %}
+    {{ ticker.title }}
+{% endblock %}
+{% block body %}
+    <div class="box">
+        <div class="block">
+            <h1 class="is-1 title">
+                {{ ticker.title }}
+            </h1>
+        </div>
+        <div class="block">
+            <h2 class="is-2 subtitle">
+                {{ ticker.code }}
+            </h2>
+        </div>
+        <div class="block">
+            {{ ticker.description }}
+        </div>
+    </div>
+    <div class="box">
+        {% if ticker.get_real_candles %}
+            <table class="table is-striped is-fullwidth">
+                <thead>
+                <th>
+                    Дата
+                </th>
+
+                <th>
+                    Открытие
+                </th>
+
+                <th>
+                    Закрытие
+                </th>
+
+                <th>
+                    Максимум
+                </th>
+
+                <th>
+                    Минимум
+                </th>
+                <th>
+                    Кол-во сделок
+                </th>
+
+                </thead>
+                <tbody>
+                {% for candle in ticker.get_real_candles %}
+                    <tr>
+                        <td>
+                            {{ ticker.get_last_real_candle.begin.date }}
+                        </td>
+                        <td>
+                            {{ ticker.get_last_real_candle.open }}
+                        </td>
+                        <td>
+                            {{ ticker.get_last_real_candle.close }}
+                        </td>
+                        <td>
+                            {{ ticker.get_last_real_candle.high }}
+                        </td>
+                        <td>
+                            {{ ticker.get_last_real_candle.low }}
+                        </td>
+
+                        <td>     {{ ticker.get_last_real_candle.volume }}
+
+                        </td>
+                    </tr>
+
+                {% endfor %}
+                </tbody>
+            </table>
+        {% else %}
+            <h2 class="is-2 subtitle">
+                Нет данных!
+            </h2>
+        {% endif %}
+    </div>
+{% endblock %}
